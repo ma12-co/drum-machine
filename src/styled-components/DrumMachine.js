@@ -6,7 +6,7 @@ export default styled.div`
   height: 450px;
   display: grid;
   grid-template-columns: auto auto;
-  grid-template-rows: 1fr;
+  grid-template-rows: auto;
   justify-items: center;
   align-items: center;
 `
