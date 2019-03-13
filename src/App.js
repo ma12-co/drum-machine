@@ -4,8 +4,125 @@ import StyledPad from "./styled-components/StyledPad"
 import Board from "./styled-components/Board"
 import DrumMachine from "./styled-components/DrumMachine"
 import Wrapper from "./styled-components/Wrapper"
+import SelectBank from "./styled-components/SelectBank"
+
+const bankOne = [
+  {
+    keyCode: 81,
+    keyTrigger: "Q",
+    id: "Heater-1",
+    url: "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"
+  },
+  {
+    keyCode: 87,
+    keyTrigger: "W",
+    id: "Heater-2",
+    url: "https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3"
+  },
+  {
+    keyCode: 69,
+    keyTrigger: "E",
+    id: "Heater-3",
+    url: "https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3"
+  },
+  {
+    keyCode: 65,
+    keyTrigger: "A",
+    id: "Heater-4",
+    url: "https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3"
+  },
+  {
+    keyCode: 83,
+    keyTrigger: "S",
+    id: "Clap",
+    url: "https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3"
+  },
+  {
+    keyCode: 68,
+    keyTrigger: "D",
+    id: "Open-HH",
+    url: "https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3"
+  },
+  {
+    keyCode: 90,
+    keyTrigger: "Z",
+    id: "Kick-n'-Hat",
+    url: "https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3"
+  },
+  {
+    keyCode: 88,
+    keyTrigger: "X",
+    id: "Kick",
+    url: "https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3"
+  },
+  {
+    keyCode: 67,
+    keyTrigger: "C",
+    id: "Closed-HH",
+    url: "https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3"
+  }
+]
+
+const bankTwo = [
+  {
+    keyCode: 81,
+    keyTrigger: "Q",
+    id: "Chord-1",
+    url: "https://s3.amazonaws.com/freecodecamp/drums/Chord_1.mp3"
+  },
+  {
+    keyCode: 87,
+    keyTrigger: "W",
+    id: "Chord-2",
+    url: "https://s3.amazonaws.com/freecodecamp/drums/Chord_2.mp3"
+  },
+  {
+    keyCode: 69,
+    keyTrigger: "E",
+    id: "Chord-3",
+    url: "https://s3.amazonaws.com/freecodecamp/drums/Chord_3.mp3"
+  },
+  {
+    keyCode: 65,
+    keyTrigger: "A",
+    id: "Shaker",
+    url: "https://s3.amazonaws.com/freecodecamp/drums/Give_us_a_light.mp3"
+  },
+  {
+    keyCode: 83,
+    keyTrigger: "S",
+    id: "Open-HH",
+    url: "https://s3.amazonaws.com/freecodecamp/drums/Dry_Ohh.mp3"
+  },
+  {
+    keyCode: 68,
+    keyTrigger: "D",
+    id: "Closed-HH",
+    url: "https://s3.amazonaws.com/freecodecamp/drums/Bld_H1.mp3"
+  },
+  {
+    keyCode: 90,
+    keyTrigger: "Z",
+    id: "Punchy-Kick",
+    url: "https://s3.amazonaws.com/freecodecamp/drums/punchy_kick_1.mp3"
+  },
+  {
+    keyCode: 88,
+    keyTrigger: "X",
+    id: "Side-Stick",
+    url: "https://s3.amazonaws.com/freecodecamp/drums/side_stick_1.mp3"
+  },
+  {
+    keyCode: 67,
+    keyTrigger: "C",
+    id: "Snare",
+    url: "https://s3.amazonaws.com/freecodecamp/drums/Brk_Snr.mp3"
+  }
+]
 
 export default function App() {
+  const [bank, setBank] = useState(bankOne)
+
   useEffect(() => {
     // This gets called after every render, by default
     // (the first one, and every one after that)
@@ -21,7 +138,7 @@ export default function App() {
         e.key === "x" ||
         e.key === "c"
       ) {
-        playSound(e.key)
+        document.getElementById(`pad${e.key.toUpperCase()}`).click()
       }
     })
   })
@@ -33,7 +150,7 @@ export default function App() {
 
   const playSound = padName => {
     let sound = document.getElementById(padName.toUpperCase())
-    sound.currentTime = 0
+    sound.currentTime = 0 //resets the sound to 0 (seconds)
     sound.play()
   }
 
@@ -41,88 +158,44 @@ export default function App() {
     <Wrapper id="drum-machine">
       <DrumMachine id="display">
         <Board>
-          <StyledPad className="drum-pad" onClick={handlePress}>
-            q
-            <audio
-              preload="auto"
-              id="Q"
-              className="clip"
-              src="https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"
-            />
-          </StyledPad>
-          <StyledPad className="drum-pad" onClick={handlePress}>
-            w
-            <audio
-              preload="auto"
-              id="W"
-              className="clip"
-              src="https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3"
-            />
-          </StyledPad>
-          <StyledPad className="drum-pad" onClick={handlePress}>
-            e
-            <audio
-              preload="auto"
-              id="E"
-              className="clip"
-              src="https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3"
-            />
-          </StyledPad>
-          <StyledPad className="drum-pad" onClick={handlePress}>
-            a
-            <audio
-              preload="auto"
-              id="A"
-              className="clip"
-              src="https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3"
-            />
-          </StyledPad>
-          <StyledPad className="drum-pad" onClick={handlePress}>
-            s
-            <audio
-              preload="auto"
-              id="S"
-              className="clip"
-              src="https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3"
-            />
-          </StyledPad>
-          <StyledPad className="drum-pad" onClick={handlePress}>
-            d
-            <audio
-              preload="auto"
-              id="D"
-              className="clip"
-              src="https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3"
-            />
-          </StyledPad>
-          <StyledPad className="drum-pad" onClick={handlePress}>
-            z
-            <audio
-              preload="auto"
-              id="Z"
-              className="clip"
-              src="https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3"
-            />
-          </StyledPad>
-          <StyledPad className="drum-pad" onClick={handlePress}>
-            x
-            <audio
-              preload="auto"
-              id="X"
-              className="clip"
-              src="https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3"
-            />
-          </StyledPad>
-          <StyledPad className="drum-pad" onClick={handlePress}>
-            c
-            <audio
-              preload="auto"
-              id="C"
-              className="clip"
-              src="https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3"
-            />
-          </StyledPad>
+          {bank.map(x => {
+            return (
+              <StyledPad
+                id={`pad${x.keyTrigger}`}
+                className="drum-pad"
+                onClick={handlePress}
+              >
+                {`${x.keyTrigger}`}
+                <audio
+                  preload="auto"
+                  id={x.keyTrigger}
+                  className="clip"
+                  src={x.url}
+                />
+              </StyledPad>
+            )
+          })}
         </Board>
+        <SelectBank>
+          <label>
+            <input
+              name="banks"
+              type="radio"
+              value="bankOne"
+              onChange={() => setBank(bankOne)}
+            />
+            Bank 1
+          </label>
+          <label>
+            <input
+              name="banks"
+              type="radio"
+              value="bankTwo"
+              onChange={() => setBank(bankTwo)}
+            />
+            Bank 2
+          </label>
+        </SelectBank>
       </DrumMachine>
     </Wrapper>
   )

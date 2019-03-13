@@ -9,9 +9,6 @@ export default styled.button`
   &:hover {
     background-color: red;
   }
-  &:active {
-    background-color: blue;
-  }
   &:focus {
     outline: none;
   }
