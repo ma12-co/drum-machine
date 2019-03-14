@@ -5,6 +5,7 @@ import Board from "./styled-components/Board"
 import DrumMachine from "./styled-components/DrumMachine"
 import Wrapper from "./styled-components/Wrapper"
 import SelectBank from "./styled-components/SelectBank"
+import Display from "./styled-components/Display"
 
 const bankOne = [
   {
@@ -122,6 +123,7 @@ const bankTwo = [
 
 export default function App() {
   const [bank, setBank] = useState(bankOne)
+  const [soundName, setSoundName] = useState("first")
 
   useEffect(() => {
     // This gets called after every render, by default
@@ -151,6 +153,7 @@ export default function App() {
   const playSound = padName => {
     let sound = document.getElementById(padName.toUpperCase())
     sound.currentTime = 0 //resets the sound to 0 (seconds)
+    setSoundName(document.getElementById(padName).name)
     sound.play()
   }
 
@@ -169,6 +172,7 @@ export default function App() {
                 <audio
                   preload="auto"
                   id={x.keyTrigger}
+                  name={"5"}
                   className="clip"
                   src={x.url}
                 />
@@ -196,6 +200,7 @@ export default function App() {
             Bank 2
           </label>
         </SelectBank>
+        <Display>{soundName}</Display>
       </DrumMachine>
     </Wrapper>
   )
