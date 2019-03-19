@@ -140,7 +140,7 @@ export default function App() {
         e.key === "x" ||
         e.key === "c"
       ) {
-        document.getElementByqwId(`pad${e.key.toUpperCase()}`).click()
+        document.getElementById(`pad${e.key.toUpperCase()}`).click()
       }
     })
   })
