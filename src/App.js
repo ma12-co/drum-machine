@@ -140,20 +140,20 @@ export default function App() {
         e.key === "x" ||
         e.key === "c"
       ) {
-        document.getElementById(`pad${e.key.toUpperCase()}`).click()
+        document.getElementByqwId(`pad${e.key.toUpperCase()}`).click()
       }
     })
   })
 
   const handlePress = e => {
     let padName = e.target.innerHTML[0]
+    setSoundName(e.target.name)
     playSound(padName)
   }
 
   const playSound = padName => {
     let sound = document.getElementById(padName.toUpperCase())
     sound.currentTime = 0 //resets the sound to 0 (seconds)
-    setSoundName(document.getElementById(padName).name)
     sound.play()
   }
 
@@ -167,12 +167,12 @@ export default function App() {
                 id={`pad${x.keyTrigger}`}
                 className="drum-pad"
                 onClick={handlePress}
+                name={x.id}
               >
                 {`${x.keyTrigger}`}
                 <audio
                   preload="auto"
                   id={x.keyTrigger}
-                  name={"5"}
                   className="clip"
                   src={x.url}
                 />
